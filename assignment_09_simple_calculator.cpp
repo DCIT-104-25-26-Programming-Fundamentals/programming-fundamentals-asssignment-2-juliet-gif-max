@@ -73,3 +73,114 @@
 #include <cmath>
 using namespace std;
 
+void printMenu() {
+    cout << "\n============================" << endl;
+    cout << "      SIMPLE CALCULATOR" << endl;
+    cout << "============================" << endl;
+    cout << "1. Addition" << endl;
+    cout << "2. Subtraction" << endl;
+    cout << "3. Multiplication" << endl;
+    cout << "4. Division" << endl;
+    cout << "5. Modulus" << endl;
+    cout << "6. Exponentiation" << endl;
+    cout << "7. Quit" << endl;
+    cout << "Select an operation (1-7): ";
+}
+
+double add(double a, double b) {
+    return a + b;
+}
+
+double subtract(double a, double b) {
+    return a - b;
+}
+
+double multiply(double a, double b) {
+    return a * b;
+}
+
+double divide(double a, double b) {
+    if (b == 0) {
+        cout << "Error: Cannot divide by zero." << endl;
+        return 0;
+    }
+    return a / b;
+}
+
+int modulo(int a, int b) {
+    if (b == 0) {
+        cout << "Error: Cannot divide by zero." << endl;
+        return 0;
+    }
+    return a % b;
+}
+
+double power(double base, double exponent) {
+    return pow(base, exponent);
+}
+
+int main() {
+    int choice;
+    double a, b, result;
+
+    do {
+        printMenu();
+        cin >> choice;
+
+        if (choice >= 1 && choice <= 6) {
+            cout << "Enter first number: ";
+            cin >> a;
+            cout << "Enter second number: ";
+            cin >> b;
+        }
+
+        switch (choice) {
+            case 1:
+                result = add(a, b);
+                cout << "Result: " << a << " + " << b << " = " << fixed << setprecision(2) << result << endl;
+                break;
+
+            case 2:
+                result = subtract(a, b);
+                cout << "Result: " << a << " - " << b << " = " << fixed << setprecision(2) << result << endl;
+                break;
+
+            case 3:
+                result = multiply(a, b);
+                cout << "Result: " << a << " * " << b << " = " << fixed << setprecision(2) << result << endl;
+                break;
+
+            case 4:
+                result = divide(a, b);
+                if (b != 0) {
+                    cout << "Result: " << a << " / " << b << " = " << fixed << setprecision(2) << result << endl;
+                }
+                break;
+
+            case 5:
+                if (b == 0) {
+                    cout << "Error: Cannot divide by zero." << endl;
+                } else {
+                    int integerResult = modulo(static_cast<int>(a), static_cast<int>(b));
+                    cout << "Result: " << static_cast<int>(a) << " % " << static_cast<int>(b) << " = " << integerResult << endl;
+                }
+                break;
+
+            case 6:
+                result = power(a, b);
+                cout << "Result: " << a << " ^ " << b << " = " << fixed << setprecision(2) << result << endl;
+                break;
+
+            case 7:
+                cout << "Goodbye!" << endl;
+                break;
+
+            default:
+                cout << "Error: Invalid operation." << endl;
+                break;
+        }
+    } while (choice != 7);
+
+    return 0;
+}
+
